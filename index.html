@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aroma Code — Ваш персональный кофейный код</title>
+  <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #DFFF00;
+      --bg: #121212;
+      --text: #fff;
+      --radius: 16px;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      box-sizing: border-box;
+    }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.2rem;
+    }
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero__bg {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+    .hero__overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(18,18,18,0.7);
+      z-index: 2;
+    }
+    .hero__content {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .hero__logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+      margin-bottom: 1.2rem;
+    }
+    .hero__title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin: 0 0 1rem 0;
+      letter-spacing: -1px;
+    }
+    .hero__subtitle {
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin-bottom: 2rem;
+      color: #e0e0e0;
+      max-width: 420px;
+    }
+    .hero__btn {
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding: 1rem 2.2rem;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      box-shadow: 0 2px 12px rgba(223,255,0,0.08);
+    }
+    .hero__btn:hover {
+      background: #cbe800;
+      color: #121212;
+    }
+    /* How it works */
+    .how {
+      padding: 3.5rem 0 2.5rem 0;
+      background: none;
+    }
+    .how__grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      align-items: center;
+      justify-content: center;
+    }
+    .how__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 260px;
+      text-align: center;
+      gap: 1.2rem;
+    }
+    .how__icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #232323;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+    .how__icon img {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+    }
+    .how__text {
+      font-size: 1rem;
+      color: #e0e0e0;
+    }
+    @media (min-width: 700px) {
+      .how__grid {
+        flex-direction: row;
+        gap: 2.5rem;
+      }
+    }
+    /* Product Showcase */
+    .product {
+      padding: 3.5rem 0 2.5rem 0;
+      background: none;
+    }
+    .product__grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+    }
+    .product__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #181818;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+      max-width: 320px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .product__img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .product__caption {
+      padding: 1rem 1.2rem;
+      font-size: 1rem;
+      color: #e0e0e0;
+      text-align: center;
+    }
+    @media (min-width: 900px) {
+      .product__grid {
+        flex-direction: row;
+        gap: 2.5rem;
+        justify-content: center;
+      }
+      .product__item:nth-child(2) {
+        margin-top: 2.5rem;
+      }
+    }
+    /* CTA */
+    .cta {
+      padding: 4rem 0 4rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background: none;
+    }
+    .cta__title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .cta__form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+      width: 100%;
+      max-width: 340px;
+    }
+    .cta__input {
+      width: 100%;
+      padding: 1rem;
+      border-radius: var(--radius);
+      border: none;
+      font-size: 1rem;
+      background: #232323;
+      color: var(--text);
+      outline: none;
+      margin-bottom: 0.5rem;
+    }
+    .cta__btn {
+      width: 100%;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding: 1rem 0;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      box-shadow: 0 2px 12px rgba(223,255,0,0.08);
+    }
+    .cta__btn:hover {
+      background: #cbe800;
+      color: #121212;
+    }
+    /* AOS Animations */
+    [data-aos] {
+      opacity: 0;
+      transition-property: opacity, transform;
+    }
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      background: #181818;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #232323;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <section class="hero">
+    <video class="hero__bg" src="https://streamable.com/ts40rr" autoplay loop muted playsinline></video>
+    <div class="hero__overlay"></div>
+    <div class="hero__content" data-aos="fade-up" data-aos-duration="1200">
+      <img src="https://i.postimg.cc/K84Gn206/photo-5458798937117948764-y.jpg" alt="Aroma Code Logo" class="hero__logo">
+      <h1 class="hero__title">Ваш персональный кофейный код.</h1>
+      <div class="hero__subtitle">Ответьте на несколько вопросов, и наш AI подберет идеальный сорт кофе, который мы будем доставлять вам каждый месяц.</div>
+      <button class="hero__btn">Пройти тест</button>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="how">
+    <div class="container">
+      <div class="how__grid">
+        <div class="how__item" data-aos="fade-up" data-aos-delay="100">
+          <div class="how__icon"><img src="https://i.postimg.cc/tCBRZTNd/photo-5458798937117948762-y.jpg" alt="Тест"></div>
+          <div class="how__text">Пройдите короткий тест</div>
+        </div>
+        <div class="how__item" data-aos="fade-up" data-aos-delay="250">
+          <div class="how__icon"><img src="https://i.postimg.cc/4xMJPSMm/photo-5458798937117948765-y.jpg" alt="AI-подбор"></div>
+          <div class="how__text">AI подберет ваш сорт кофе</div>
+        </div>
+        <div class="how__item" data-aos="fade-up" data-aos-delay="400">
+          <div class="how__icon"><img src="https://i.postimg.cc/sXC3dZ3z/photo-5458798937117948767-y.jpg" alt="Доставка"></div>
+          <div class="how__text">Доставка каждый месяц</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Showcase -->
+  <section class="product">
+    <div class="container">
+      <div class="product__grid">
+        <div class="product__item" data-aos="fade-right" data-aos-delay="100">
+          <img class="product__img" src="https://i.postimg.cc/YqrqCgYq/photo-5458616736015316926-x.jpg" alt="Кофейные зерна">
+          <div class="product__caption">Свежие кофейные зерна</div>
+        </div>
+        <div class="product__item" data-aos="fade-up" data-aos-delay="250">
+          <img class="product__img" src="https://i.postimg.cc/hGdK50WM/photo-5458798937117948763-y.jpg" alt="Процесс заваривания">
+          <div class="product__caption">Идеальный процесс заваривания</div>
+        </div>
+        <div class="product__item" data-aos="fade-left" data-aos-delay="400">
+          <img class="product__img" src="https://i.postimg.cc/0QGP82Nw/photo-5458798937117948766-y.jpg" alt="Готовая чашка кофе">
+          <div class="product__caption">Готовая чашка кофе</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <div class="cta__title">Начните свое кофейное путешествие.</div>
+      <form class="cta__form" autocomplete="off" onsubmit="event.preventDefault(); alert('Спасибо за подписку!');">
+        <input class="cta__input" type="email" placeholder="Ваш email" required>
+        <button class="cta__btn" type="submit">Подписаться</button>
+      </form>
+    </div>
+  </section>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ once: true });
+  </script>
+</body>
+</html>
+
+       
+        
