@@ -35,9 +35,9 @@
     }
     /* feature-icon */
     .feature-icon {
-      width: 80px;
-      height: 80px;
-      margin-bottom: 20px;
+      width: 100px;
+      height: 100px;
+      margin-bottom: 28px;
       display: inline-block;
     }
     .feature-icon img {
@@ -352,8 +352,24 @@
 
   <script src="https://cdn.botpress.cloud/webchat/v3.2/inject.js" defer></script>
   <script src="https://files.bpcontent.cloud/2025/07/17/16/20250717162605-BH9CKEZS.js" defer></script>
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var testBtn = document.querySelector('.hero__btn');
+    if (testBtn) {
+      testBtn.addEventListener('click', function () {
+        if (window.botpressWebChat) {
+          window.botpressWebChat.sendEvent({ type: 'show' });
+        }
+      });
+    }
+  });
+</script>
 </body>
 </html>
+
+
 
 
  
