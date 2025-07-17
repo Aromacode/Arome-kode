@@ -14,9 +14,19 @@
       --radius: 16px;
     }
 
-    /* Скрыть стандартную кнопку Botpress WebChat */
-    .bp-widget-button, .bpw-floating-button, .bpw-floating-button-frame, .bpw-floating-button-container {
+    /* Скрыть стандартную кнопку Botpress WebChat (все возможные варианты) */
+    .bp-widget-button,
+    .bpw-floating-button,
+    .bpw-floating-button-frame,
+    .bpw-floating-button-container,
+    .bpw-floating-btn,
+    iframe[src*="webchat"],
+    [class*="bpw-floating-button"],
+    [class*="bp-widget-button"] {
       display: none !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      visibility: hidden !important;
     }
     html, body {
       height: 100%;
@@ -371,27 +381,26 @@
 
 <script>
   function openBotpressChat() {
-    if (window.botpressWebChat) {
+    if (window.botpressWebChat && window.botpressWebChat.sendEvent) {
       window.botpressWebChat.sendEvent({ type: 'show' });
     }
   }
-  document.addEventListener('DOMContentLoaded', function () {
+  // Ждём полной загрузки Botpress WebChat и только потом вешаем обработчик
+  function attachBotpressButton() {
     var testBtn = document.querySelector('.hero__btn');
-    if (testBtn) {
-      // Ждём полной инициализации Botpress WebChat
-      function tryAttach() {
-        if (window.botpressWebChat && window.botpressWebChat.sendEvent) {
-          testBtn.addEventListener('click', openBotpressChat);
-        } else {
-          setTimeout(tryAttach, 300);
-        }
-      }
-      tryAttach();
+    if (testBtn && window.botpressWebChat && window.botpressWebChat.sendEvent) {
+      testBtn.addEventListener('click', openBotpressChat);
+    } else {
+      setTimeout(attachBotpressButton, 300);
     }
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    attachBotpressButton();
   });
 </script>
 </body>
 </html>
+
 
  
 
