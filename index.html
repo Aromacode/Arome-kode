@@ -143,6 +143,12 @@
       font-size: 1rem;
       color: #e0e0e0;
     }
+    /* feature-icon */
+    /*
+      Copilot, сделай иконки преимуществ крупнее.
+      Установи ширину (width) и высоту (height) на 80px.
+      Сохрани отступ снизу (margin-bottom) 20px и центрирование (display: inline-block).
+    */
     @media (min-width: 700px) {
       .how__grid {
         flex-direction: row;
@@ -281,15 +287,15 @@
     <div class="container">
       <div class="how__grid">
         <div class="how__item" data-aos="fade-up" data-aos-delay="100">
-          <div class="how__icon"><img src="https://i.postimg.cc/tCBRZTNd/photo-5458798937117948762-y.jpg" alt="Тест"></div>
+          <div class="how__icon feature-icon"><img src="https://i.postimg.cc/tCBRZTNd/photo-5458798937117948762-y.jpg" alt="Тест"></div>
           <div class="how__text">Пройдите короткий тест</div>
         </div>
         <div class="how__item" data-aos="fade-up" data-aos-delay="250">
-          <div class="how__icon"><img src="https://i.postimg.cc/4xMJPSMm/photo-5458798937117948765-y.jpg" alt="AI-подбор"></div>
+          <div class="how__icon feature-icon"><img src="https://i.postimg.cc/4xMJPSMm/photo-5458798937117948765-y.jpg" alt="AI-подбор"></div>
           <div class="how__text">AI подберет ваш сорт кофе</div>
         </div>
         <div class="how__item" data-aos="fade-up" data-aos-delay="400">
-          <div class="how__icon"><img src="https://i.postimg.cc/sXC3dZ3z/photo-5458798937117948767-y.jpg" alt="Доставка"></div>
+          <div class="how__icon feature-icon"><img src="https://i.postimg.cc/sXC3dZ3z/photo-5458798937117948767-y.jpg" alt="Доставка"></div>
           <div class="how__text">Доставка каждый месяц</div>
         </div>
       </div>
@@ -327,12 +333,31 @@
     </div>
   </section>
 
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
+
   <script>
-    AOS.init({ once: true });
+      document.addEventListener('DOMContentLoaded', function () {
+          AOS.init({
+              duration: 800,
+              once: true,
+          });
+      });
   </script>
-</body>
-</html>
+
+  <script src="https://cdn.botpress.cloud/webchat/v3.2/inject.js" defer></script>
+  <script src
+
+
+  
+   
+     
+ 
+
+  
+ 
+    
+  
+
 
 
  
